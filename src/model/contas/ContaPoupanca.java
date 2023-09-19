@@ -9,6 +9,11 @@ public class ContaPoupanca extends ContaBancaria {
         super(saldo);
         this.limite = limite;
     }
+
+    public double getLimite() {
+        return limite;
+    }
+
     @Override
     public double sacar(double valor) {
        if(this.getSaldo() - valor < 0){
@@ -29,5 +34,16 @@ public class ContaPoupanca extends ContaBancaria {
     public double depositar(double valor) {
         this.setSaldo(this.getSaldo() + valor);
         return this.getSaldo();
+    }
+
+    @Override
+    public ContaBancaria mostrarDados(Integer codigo) {
+        for(ContaBancaria contaFor : todasContasBancarias){
+            if(codigo == contaFor.getNumeroConta()){
+                ContaBancaria contaPoupanca = new ContaPoupanca(contaFor.getSaldo(),((ContaPoupanca)contaFor).getLimite());
+                return contaPoupanca;
+            }
+        }
+        return null;
     }
 }

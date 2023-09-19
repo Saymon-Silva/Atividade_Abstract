@@ -1,8 +1,9 @@
 package model.contas;
 
 import model.ContaBancaria;
+import model.IImprimivel;
 
-public class ContaCorrente extends ContaBancaria {
+public class ContaCorrente extends ContaBancaria{
     private double taxaDeOperacao;
 
     public ContaCorrente(double saldo) {
@@ -11,11 +12,27 @@ public class ContaCorrente extends ContaBancaria {
     }
     @Override
     public double sacar(double valor) {
-        return 0;
+        if(this.getSaldo() - (valor + (valor * this.taxaDeOperacao)) > 0){
+            return valor;
+        }
+        else{
+            return 0;
+        }
+    }
+    @Override
+    public double depositar(double valor) {
+        this.setSaldo(this.getSaldo() + (valor - (valor * this.taxaDeOperacao)));
+        return this.getSaldo();
     }
 
     @Override
-    public double depositar(double valor) {
-        return 0;
+    public ContaBancaria mostrarDados(Integer codigo) {
+        for(ContaBancaria contaFor : todasContasBancarias){
+            if(codigo == contaFor.getNumeroConta()){
+                ContaBancaria contaCorrente = new ContaCorrente(contaFor.getSaldo());
+                return contaCorrente;
+            }
+        }
+        return null;
     }
 }

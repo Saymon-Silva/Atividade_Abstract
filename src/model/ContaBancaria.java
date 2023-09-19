@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public abstract class ContaBancaria {
+public abstract class ContaBancaria implements IImprimivel<ContaBancaria, Integer>{
     private int numeroConta;
     private double saldo;
 
-    private static ArrayList<ContaBancaria> todasContasBancarias = new ArrayList<>();
+    public static ArrayList<ContaBancaria> todasContasBancarias = new ArrayList<>();
 
     public ContaBancaria(double saldo){
         this.saldo = saldo;
