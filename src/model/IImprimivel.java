@@ -1,6 +1,6 @@
 package model;
 
-public interface IImprimivel<T,Id> {
+public interface IImprimivel{
 
-    T mostrarDados(Id id);
+    String mostrarDados();
 }
